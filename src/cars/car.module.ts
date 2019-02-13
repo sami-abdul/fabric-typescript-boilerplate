@@ -18,4 +18,5 @@ import { ChainModule } from '../core/chain/chain.module';
 })
 export class CarModule implements NestModule {
     configure(consumer: MiddlewareConsumer): void {
+    }
 }

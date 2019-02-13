@@ -1,7 +1,6 @@
 import { Injectable, InternalServerErrorException, NotFoundException } from '@nestjs/common';
 import { CarDto } from './car.model';
 import { RequestHelper } from '../core/chain/requesthelper';
-import { IAuthUser } from '../core/authentication/interfaces/authenticateduser';
 import { InvokeResult } from '../common/utils/invokeresult.model';
 import { ChainMethod } from '../chainmethods.enum';
 
@@ -55,8 +54,8 @@ export class CarService {
      * @returns {Promise<InvokeResult>}
      * @memberof CarService
      */
-    create(carDto: CarDto, authUser: IAuthUser): Promise<InvokeResult> {
-        return this.requestHelper.invokeRequest(ChainMethod.createCar, carDto, authUser.id, false)
+    create(carDto: CarDto): Promise<InvokeResult> {
+        return this.requestHelper.invokeRequest(ChainMethod.createCar, carDto, '', false)
             .catch((error) => {
                 throw new InternalServerErrorException(error);
             });
